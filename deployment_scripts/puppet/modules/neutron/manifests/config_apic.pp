@@ -25,6 +25,9 @@ class neutron::config_apic (
     $snat_gateway_mask                  = '',
     $optimized_dhcp                     = true,
     $optimized_metadata                 = true,
+    $use_vmware                         = false,
+    $apic_vmm_type                      = 'openstack',
+    $apic_domain_name                   = '',
 ){
 
     $additional_config_hash = hash(split($additional_config, '[\n=]'))
@@ -89,6 +92,15 @@ class neutron::config_apic (
            'group_policy_implicit_policy/default_ip_pool':      value => '192.168.0.0/16';
        }
     }
+
+    # VMWare section begin
+    if ($use_vmware == true) {
+       neutron_plugin_ml2_cisco {
+           'ml2_cisco_apic/apic_vmm_type':                     value => $apic_vmm_type;
+           'ml2_cisco_apic/apic_domain_name':                  value => $apic_domain_name;
+       }    
+    }
+    # VMWare section end
 
     additional_configuration { $additional_config_options: }
     static_configuration { $static_config_options: }

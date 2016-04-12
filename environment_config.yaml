@@ -42,6 +42,15 @@ attributes:
     regex:
       source: '\S'
       error: "Error field cannot be empty"
+  apic_domain_name:
+    value: 'apic_domain_name'
+    label: 'APIC domain name'
+    description: 'Domain name for VMWare VM provider'
+    weigth: 44
+    type: "text"
+    restrictions:
+      - condition: "not (settings:use_vcenter == true and settings:fuel-plugin-vmware-dvs == true)"
+        action: disable
   opflex_encap_type:
     type: "radio"
     weight: 45

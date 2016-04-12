@@ -41,6 +41,9 @@ class cisco_aci::opflex_ml2 (
     $snat_gateway_mask                  = '',
     $optimized_dhcp                     = true,
     $optimized_metadata                 = true,
+    $use_vmware                         = false,
+    $apic_vmm_type                      = 'openstack',
+    $apic_domain_name                   = '',
 ){
     include 'apic::params'
     include 'apic::api'
@@ -158,6 +161,9 @@ class cisco_aci::opflex_ml2 (
             snat_gateway_mask                  => $snat_gateway_mask,
             optimized_dhcp                     => $optimized_dhcp,
             optimized_metadata                 => $optimized_metadata,
+            use_vmware                         => $use_vmware,
+            apic_vmm_type                      => $apic_vmm_type,
+            apic_domain_name                   => $apic_domain_name,
         }
     }
 

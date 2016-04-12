@@ -18,6 +18,16 @@ $neutron_user_password         = $neutron_config['keystone']['admin_password']
 $service_endpoint              = hiera('management_vip')
 $neutron_metadata_proxy_secret = $neutron_config['metadata']['metadata_proxy_shared_secret']
 
+# VMware section begin
+$use_vcenter                   = hiera('use_vcenter')
+$fuel_plugin_vmware_dvs        = hiera('fuel-plugin-vmware-dvs')
+
+if ($use_vcenter == true && $fuel_plugin_vmware_dvs == true) {
+    $use_vmware = true
+    $apic_vmm_type = 'vmware'
+}
+# VMware section end
+
 prepare_network_config($network_scheme)
 $intf   = get_network_role_property('neutron/private', 'phys_dev')
 $opflex_interface   = $intf[0]
@@ -92,6 +102,9 @@ case $install_type {
             snat_gateway_mask                        => $aci_opflex_hash['snat_gateway_mask'],
             optimized_dhcp                           => $aci_opflex_hash['optimized_dhcp'],
             optimized_metadata                       => $aci_opflex_hash['optimized_metadata'],
+            use_vmware                               => $use_vmware,
+            apic_vmm_type                            => $apic_vmm_type,
+            apic_domain_name                         => $aci_opflex_hash['apic_domain_name'],
        }
 
        if "compute" in $roles {
