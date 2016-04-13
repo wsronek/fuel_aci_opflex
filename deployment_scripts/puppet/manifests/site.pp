@@ -22,7 +22,7 @@ $neutron_metadata_proxy_secret = $neutron_config['metadata']['metadata_proxy_sha
 $use_vcenter                   = hiera('use_vcenter')
 $fuel_plugin_vmware_dvs        = hiera('fuel-plugin-vmware-dvs')
 
-if ($use_vcenter == true && $fuel_plugin_vmware_dvs == true) {
+if ($use_vcenter == true and $fuel_plugin_vmware_dvs) {
     $use_vmware = true
     $apic_vmm_type = 'vmware'
 }

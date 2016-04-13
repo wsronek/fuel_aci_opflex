@@ -43,14 +43,14 @@ attributes:
       source: '\S'
       error: "Error field cannot be empty"
   apic_domain_name:
-    value: 'apic_domain_name'
-    label: 'APIC domain name'
+    value: 'dvswitch'
+    label: 'APIC Domain name'
     description: 'Domain name for VMWare VM provider'
-    weigth: 44
+    weight: 44
     type: "text"
     restrictions:
-      - condition: "not (settings:use_vcenter == true and settings:fuel-plugin-vmware-dvs == true)"
-        action: disable
+        - condition: "not (settings:common.use_vcenter.value == true and settings:fuel-plugin-vmware-dvs)"
+          action: hide
   opflex_encap_type:
     type: "radio"
     weight: 45
