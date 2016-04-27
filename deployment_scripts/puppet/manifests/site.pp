@@ -25,6 +25,12 @@ $fuel_plugin_vmware_dvs        = hiera('fuel-plugin-vmware-dvs')
 if ($use_vcenter == true and $fuel_plugin_vmware_dvs) {
     $use_vmware = true
     $apic_vmm_type = 'vmware'
+    $apic_domain_name = $fuel_plugin_vmware_dvs['vmware_dvs_net_maps']
+}
+else {
+    $use_vmware = false
+    $apic_vmm_type = 'openstack'
+    $apic_domain_name = ''
 }
 # VMware section end
 
@@ -104,7 +110,7 @@ case $install_type {
             optimized_metadata                       => $aci_opflex_hash['optimized_metadata'],
             use_vmware                               => $use_vmware,
             apic_vmm_type                            => $apic_vmm_type,
-            apic_domain_name                         => $aci_opflex_hash['apic_domain_name'],
+            apic_domain_name                         => $apic_domain_name,
        }
 
        if "compute" in $roles {
