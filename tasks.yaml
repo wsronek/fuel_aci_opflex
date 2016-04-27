@@ -14,7 +14,7 @@
   stage: post_deployment/4001
   type: puppet
   parameters:
-    puppet_manifest: puppet/reload.pp
+    puppet_manifest: puppet/manifests/reload.pp
     puppet_modules: puppet/modules/:/etc/puppet/modules
     timeout: 3600
 

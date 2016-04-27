@@ -48,8 +48,9 @@ attributes:
     description: 'Domain name for VMWare VM provider'
     weight: 44
     type: "text"
+    value: settings:fuel-plugin-vmware.vmware_dvs_net_maps.value
     restrictions:
-        - condition: "not (settings:common.use_vcenter.value == true and settings:fuel-plugin-vmware-dvs)"
+        - condition: "not (settings:common.use_vcenter.value == true and settings:fuel-plugin-vmware-dvs.metadata.enabled.value == true)"
           action: hide
   opflex_encap_type:
     type: "radio"
