@@ -98,7 +98,7 @@ class neutron::config_apic (
        neutron_plugin_ml2_cisco {
            'ml2_cisco_apic/apic_vmm_type':                     value => $apic_vmm_type;
            'ml2_cisco_apic/apic_domain_name':                  value => $apic_domain_name;
-           'ml2_type_opflex/default_opflex_network'            value => 'physnet2';
+           'ml2_type_opflex/default_opflex_network':           value => 'physnet2';
        }    
     }
     # VMWare section end
